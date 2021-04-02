@@ -1,0 +1,11 @@
+import { Client } from '../../models/client'
+import { ClientGetAllRepository } from '../../protocols/client-repository'
+
+type Result = Promise<Client[]>
+
+const getAll = (clientGetAllRepository: ClientGetAllRepository) =>
+  ():Result => {
+    return clientGetAllRepository()
+  }
+
+export { getAll }
