@@ -47,4 +47,12 @@ describe('ClientGetAllWithFilters Repository', () => {
     })
     expect(clients.length).toBe(1)
   })
+
+  test('should return one by other name and email client', async () => {
+    const clients = await getAllClientsWithFiltersPostgres({
+      name: 'ga',
+      email: 'luc'
+    })
+    expect(clients.length).toBe(2)
+  })
 })
