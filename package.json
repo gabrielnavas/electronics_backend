@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=test && nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/main/server.ts",
-    "test:watch": "jest --watchAll --no-cache"
+    "test:watch": "jest --watchAll --no-cache --detectOpenHandles"
   },
   "dependencies": {
     "cors": "^2.8.5",
