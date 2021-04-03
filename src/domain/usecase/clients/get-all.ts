@@ -1,5 +1,5 @@
 import { Client } from '../../models/client'
-import { ClientGetAllRepository } from '../../protocols/client-repository'
+import { ClientGetAllRepository } from '../../protocols/client-get-all-repository'
 
 type Result = Promise<Client[]>
 
