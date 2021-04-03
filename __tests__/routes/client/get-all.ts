@@ -26,23 +26,14 @@ describe('Get All Clients', () => {
     `)
     const response = await request.get('/api/client')
     const body = response.body
-    expect(body.length).toEqual(4)
-    expect(body).toEqual([{
-      name: 'gabriel',
-      email: 'gabriel@email.com',
-      password: '123'
-    }, {
-      name: 'sara',
-      email: 'sara@email.com',
-      password: '123'
-    }, {
-      name: 'lucas',
-      email: 'lucas@email.com',
-      password: '123'
-    }, {
-      name: 'maria',
-      email: 'maria@email.com',
-      password: '123'
-    }])
+    expect(body.length).toBe(4)
+
+    expect(typeof body[0].id).toEqual('string')
+    expect(body[0].name).toEqual('gabriel')
+    expect(body[0].email).toEqual('gabriel@email.com')
+
+    expect(typeof body[2].id).toEqual('string')
+    expect(body[2].name).toEqual('lucas')
+    expect(body[2].email).toEqual('lucas@email.com')
   })
 })

@@ -1,5 +1,3 @@
 import { Client } from '../models/client'
 
-export interface ClientGetAllRepository {
-  (): Promise<Client[]>
-}
+export type ClientGetAllRepository = () => Promise<Client[]>
