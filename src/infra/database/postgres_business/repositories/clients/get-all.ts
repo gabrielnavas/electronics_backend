@@ -5,7 +5,7 @@ import { client as clientConnection } from '../../connection'
 
 export const getAllClientsPostgres: ClientGetAllRepository = async (): Promise<Client[]> => {
   const sql = `
-    SELECT name, email, password
+    SELECT id, name, email, password
     FROM eletronics_navas.client;
   `
   const clients = await clientConnection.query<Client[]>(sql)
