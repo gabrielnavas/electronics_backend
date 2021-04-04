@@ -1,10 +1,10 @@
 import express from 'express'
-import setupMiddlewares from './configs/middlewares'
-import setupRoutes from './configs/routes'
+import configMiddlewares from './configs/middlewares'
+import configRoutes from './configs/routes'
 
 const app = express()
 
-setupMiddlewares(app)
-setupRoutes(app)
+configMiddlewares(app)
+configRoutes(app)
 
 export default app
