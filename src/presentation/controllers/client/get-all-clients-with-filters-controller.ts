@@ -39,7 +39,7 @@ const getQueries = (req: Request): ClientParam | Error => {
 
 const getAllClientsWithFiltersController = async (req: Request, res: Response) => {
   try {
-    const queries = getQueries(req)
+    const queries: ClientParam | Error = getQueries(req)
     if (queries instanceof Error) {
       return res.status(400).json(queries)
     }
