@@ -6,7 +6,7 @@ import {
   getAllClientsController,
   getAllClientsWithFiltersController,
   getClientController
-} from '../presentation/controllers/client'
+} from '../../presentation/controllers/client'
 
 const router = Router()
 
