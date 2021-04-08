@@ -1,4 +1,4 @@
-import { isEmail } from '../../infra/validation/validate'
+import { IsEmail } from '../protocols/helpers/is-email'
 
 type Client = {
   id?: string
@@ -6,8 +6,6 @@ type Client = {
   email: string
   password: string
 }
-
-type IsEmail = (email: string) => boolean
 
 const validate = (isEmailFn: IsEmail) =>
   (client: Client): Error | Client => {
@@ -17,7 +15,7 @@ const validate = (isEmailFn: IsEmail) =>
     if (client.name.length < 2 || client.name.length > 80) {
       return new Error('name must be between two and 80 characters')
     }
-    if (!isEmail(client.email)) {
+    if (!isEmailFn(client.email)) {
       return new Error('email must be between two and 80 characters')
     }
     if (client.password.length < 6 || client.password.length > 80) {

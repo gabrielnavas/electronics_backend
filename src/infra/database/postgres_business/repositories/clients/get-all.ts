@@ -1,4 +1,4 @@
-import { ClientGetAllRepository } from '../../../../../domain/protocols/client-get-all-repository'
+import { ClientGetAllRepository } from '../../../../../domain/protocols/client/client-get-all-repository'
 import { Client } from '../../../../../domain/models/client'
 
 import { client as clientConnection } from '../../connection'
