@@ -6,18 +6,24 @@ import { isEmail } from '../../../infra/validation/validate'
 
 const createClientController = async (req: Request, res: Response) => {
   try {
-    for (const attr of ['name', 'email', 'password', 'password_confirmation']) {
-      if (!req.body[attr]) {
-        return res.status(400).json(new Error(`missing param: ${attr}.`))
+    const params = [
+      'name',
+      'email',
+      'password',
+      'passwordConfirmation'
+    ]
+    for (const paramName of params) {
+      if (!req.body[paramName]) {
+        return res.status(400).json(`missing param: ${paramName}.`)
+      }
+      if (typeof (req.body[paramName]) !== 'string') {
+        return res.status(400).json(`type error: ${paramName} must to be string`)
       }
     }
 
-    if (typeof req.body.password !== 'number' ||
-    typeof req.body.password !== 'string') {
-      return res.status(400).json(new Error('password must be string or number'))
-    } else if (req.body.password !== req.body.passwordConfimation) {
-      return res.status(400)
-        .json(new Error('password is different from password confirmation'))
+    if (req.body.password !== req.body.passwordConfirmation) {
+      const error = new Error('password is different from password confirmation')
+      return res.status(400).json(error.message)
     }
 
     const clientOrError: Client | Error = validate(isEmail)({
@@ -28,7 +34,7 @@ const createClientController = async (req: Request, res: Response) => {
 
     if (clientOrError instanceof Error) {
       return res.status(400)
-        .json(clientOrError)
+        .json(clientOrError.message)
     }
 
     const clientCreated = await clientCreateOne(
@@ -37,7 +43,8 @@ const createClientController = async (req: Request, res: Response) => {
     const { password, ...clientLessPassword } = clientCreated
     res.status(201).json(clientLessPassword)
   } catch (error) {
-    res.status(500).json(new Error('server error.'))
+    console.log(error)
+    res.status(500).json(new Error('server error.').message)
   }
 }
 
