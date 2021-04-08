@@ -101,6 +101,11 @@ describe('Create a client', () => {
 
   beforeAll(async () => {
     request = await supertest(app)
+    await clientConnection.none('delete from eletronics_navas.client;')
+  })
+
+  afterAll(async () => {
+    await clientConnection.none('delete from eletronics_navas.client;')
   })
 
   test('should return status 400 if emails is small', async () => {
@@ -117,7 +122,6 @@ describe('Create a client', () => {
   })
 
   test('should create a user and return with less password', async () => {
-    await clientConnection.none('delete from eletronics_navas.client;')
     const client = {
       email: 'any_email@email.com',
       name: 'any_name',
