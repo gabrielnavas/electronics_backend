@@ -51,7 +51,7 @@ describe('Client Models', () => {
       password: 'any_password'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('email must be between two and 80 characters'))
+    expect(error).toEqual(new Error('email format is wrong'))
   })
 
   test('should throw if password is small', () => {

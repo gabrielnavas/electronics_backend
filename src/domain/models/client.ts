@@ -16,7 +16,7 @@ const validate = (isEmailFn: IsEmail) =>
       return new Error('name must be between two and 80 characters')
     }
     if (!isEmailFn(client.email)) {
-      return new Error('email must be between two and 80 characters')
+      return new Error('email format is wrong')
     }
     if (client.password.length < 6 || client.password.length > 80) {
       return new Error('password must be between two and 80 characters')
