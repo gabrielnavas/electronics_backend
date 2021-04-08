@@ -8,12 +8,6 @@ const clientCreateOne = (
   clientInsertOneRepository: ClientInsertOneRepository
 ) =>
   async (client: ClientParam): Result => {
-    await clientInsertOneRepository(client)
-    return {
-      email: 'any_email',
-      name: 'any_name',
-      password: 'any_password',
-      id: '1'
-    }
+    return await clientInsertOneRepository(client)
   }
 export { clientCreateOne }
