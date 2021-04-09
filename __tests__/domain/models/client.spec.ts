@@ -1,4 +1,6 @@
+import { Result } from '../../../src/domain/helpers/make-result-model'
 import { Client, validate } from '../../../src/domain/models/client'
+import { ErrorModel } from '../../../src/domain/protocols/common/error-model'
 import { isEmail } from '../../../src/infra/validation/validate'
 
 const makeSut = () => {
@@ -15,7 +17,14 @@ describe('Client Models', () => {
       password: 'any_password'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('id is empty'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['id'],
+        error: new Error('id is empty')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should throw if name is small', () => {
@@ -27,7 +36,14 @@ describe('Client Models', () => {
       password: 'any_password'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('name must be between two and 80 characters'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['name'],
+        error: new Error('name must be between two and 80 characters')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should throw if name is large', () => {
@@ -39,7 +55,14 @@ describe('Client Models', () => {
       password: 'any_password'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('name must be between two and 80 characters'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['name'],
+        error: new Error('name must be between two and 80 characters')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should throw if email is wrong', () => {
@@ -51,7 +74,14 @@ describe('Client Models', () => {
       password: 'any_password'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('email format is wrong'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['email'],
+        error: new Error('email format is wrong')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should throw if password is small', () => {
@@ -63,7 +93,14 @@ describe('Client Models', () => {
       password: 'a'
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('password must be between two and 80 characters'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['password'],
+        error: new Error('password must be between two and 80 characters')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should throw if password is large', () => {
@@ -75,7 +112,14 @@ describe('Client Models', () => {
       password: Array(81).fill('a').join('')
     } as Client
     const error = sut(client)
-    expect(error).toEqual(new Error('password must be between two and 80 characters'))
+    const expected: Result<undefined> = {
+      model: undefined,
+      errorModel: {
+        propNames: ['password'],
+        error: new Error('password must be between two and 80 characters')
+      }
+    }
+    expect(error).toEqual(expected)
   })
 
   test('should return a new client instance after validate', () => {

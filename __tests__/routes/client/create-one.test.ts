@@ -22,56 +22,88 @@ describe('Check if attributes if the body is provided', () => {
     const { name, ...cliRest } = client
     const response = await request.post('/api/client').send(cliRest)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('missing param: name.')
+    const expected = {
+      param: ['name'],
+      error: 'missing param: name.'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if name is not string', async () => {
     const param = { ...client, name: { otherAtt: 'aaa' } }
     const response = await request.post('/api/client').send(param)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('type error: name must to be string')
+    const expected = {
+      param: ['name'],
+      error: 'type error: name must to be string'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if email has is not provided', async () => {
     const { email, ...cliRest } = client
     const response = await request.post('/api/client').send(cliRest)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('missing param: email.')
+    const expected = {
+      param: ['email'],
+      error: 'missing param: email.'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if email is not string', async () => {
     const param = { ...client, email: { otherAtt: 'aaa' } }
     const response = await request.post('/api/client').send(param)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('type error: email must to be string')
+    const expected = {
+      param: ['email'],
+      error: 'type error: email must to be string'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if password has is not provided', async () => {
     const { password, ...cliRest } = client
     const response = await request.post('/api/client').send(cliRest)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('missing param: password.')
+    const expected = {
+      param: ['password'],
+      error: 'missing param: password.'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if password is not string', async () => {
     const param = { ...client, password: { otherAtt: 'aaa' } }
     const response = await request.post('/api/client').send(param)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('type error: password must to be string')
+    const expected = {
+      param: ['password'],
+      error: 'type error: password must to be string'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if passwordConfirmation has is not provided', async () => {
     const { passwordConfirmation, ...cliRest } = client
     const response = await request.post('/api/client').send(cliRest)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('missing param: passwordConfirmation.')
+    const expected = {
+      param: ['passwordConfirmation'],
+      error: 'missing param: passwordConfirmation.'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should be return status 400 if passwordConfirmation is not string', async () => {
     const param = { ...client, passwordConfirmation: { otherAtt: 'aaa' } }
     const response = await request.post('/api/client').send(param)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('type error: passwordConfirmation must to be string')
+    const expected = {
+      param: ['passwordConfirmation'],
+      error: 'type error: passwordConfirmation must to be string'
+    }
+    expect(response.body).toEqual(expected)
   })
 })
 
@@ -92,7 +124,11 @@ describe('Check the passwords', () => {
     const response = await request.post('/api/client')
       .send(client)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('password is different from password confirmation')
+    const expected = {
+      param: ['password', 'passwordConfirmation'],
+      error: 'password is different from password confirmation'
+    }
+    expect(response.body).toEqual(expected)
   })
 })
 
@@ -118,7 +154,11 @@ describe('Create a client', () => {
     const response = await request.post('/api/client')
       .send(client)
     expect(response.status).toEqual(400)
-    expect(response.body).toEqual('email format is wrong')
+    const expected = {
+      param: ['email'],
+      error: 'email format is wrong'
+    }
+    expect(response.body).toEqual(expected)
   })
 
   test('should create a user and return with less password', async () => {

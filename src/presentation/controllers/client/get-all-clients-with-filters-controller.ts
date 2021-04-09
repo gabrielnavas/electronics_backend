@@ -7,7 +7,7 @@ import {
 } from '../../../domain/models/client'
 import {
   ClientParam
-} from '../../../domain/protocols/client-get-all-with-filters-repository'
+} from '../../../domain/protocols/client/client-get-all-with-filters-repository'
 import {
   clientGetAllWithFilters as clientGetAllWithFiltersUseCase
 } from '../../../domain/usecase/clients/get-all-with-filters'

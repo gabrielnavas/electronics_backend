@@ -1,5 +1,5 @@
 import { Client } from '../../models/client'
-import { ClientGetAllWithFiltersRepository, ClientParam } from '../../protocols/client-get-all-with-filters-repository'
+import { ClientGetAllWithFiltersRepository, ClientParam } from '../../protocols/client/client-get-all-with-filters-repository'
 
 type Result = Promise<Client[]>
 

@@ -1,5 +1,8 @@
 import { Client } from '../../../../../domain/models/client'
-import { ClientGetAllWithFiltersRepository, ClientParam } from '../../../../../domain/protocols/client-get-all-with-filters-repository'
+import {
+  ClientGetAllWithFiltersRepository,
+  ClientParam
+} from '../../../../../domain/protocols/client/client-get-all-with-filters-repository'
 
 import { client as clientConnection } from '../../connection'
 
